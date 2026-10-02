@@ -1,78 +1,97 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Boxes, ChartColumn, Clock, Film, Info, Route, TriangleAlert } from 'lucide-react';
+import { Boxes, CalendarRange, CircleCheck, FileWarning, PackageMinus, PackagePlus, TrendingUp, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Reveal, SectionHeading } from './ui';
 
 /* ------------------------------------------------------------------
- * ALL NUMBERS BELOW ARE ILLUSTRATIVE SAMPLE DATA.
- * They demonstrate dashboard design only and are not business results.
+ * REAL DATA from my own projects:
+ *  - FDA CAERS dataset (github.com/abhishek8762a/fda-adverse-events-sql)
+ *  - IMS stock-entry log (aggregated monthly counts only, no item data)
  * ------------------------------------------------------------------ */
-const inventory = {
-  kpis: [
-    { label: 'Sample SKUs', value: '520', icon: Boxes },
-    { label: 'Below reorder', value: '38', icon: TriangleAlert },
-    { label: 'Locations', value: '6', icon: Route },
-  ],
-  data: [
-    { name: 'Bearings', value: 320 },
-    { name: 'Fasteners', value: 410 },
-    { name: 'Seals', value: 180 },
-    { name: 'Castings', value: 140 },
-    { name: 'Shafts', value: 110 },
-    { name: 'Misc', value: 80 },
-  ],
-};
-const workflow = {
-  kpis: [
-    { label: 'Open orders', value: '24', icon: Route },
-    { label: 'Overdue steps', value: '7', icon: TriangleAlert },
-    { label: 'Avg TAT (days)', value: '3.4', icon: Clock },
-  ],
-  data: [
-    { name: 'Sales', planned: 1, actual: 1.2 },
-    { name: 'Design', planned: 3, actual: 3.8 },
-    { name: 'Planning', planned: 2, actual: 2.1 },
-    { name: 'Purchase', planned: 4, actual: 5.2 },
-    { name: 'Approval', planned: 1, actual: 1.6 },
-    { name: 'Dispatch', planned: 5, actual: 4.7 },
-  ],
-};
-const content = {
-  kpis: [
-    { label: 'Titles', value: '600', icon: Film },
-    { label: 'Categories', value: '12', icon: ChartColumn },
-    { label: 'Avg rating', value: '6.8', icon: Info },
-  ],
-  data: [
-    { name: '2014', value: 22 },
-    { name: '2015', value: 31 },
-    { name: '2016', value: 46 },
-    { name: '2017', value: 64 },
-    { name: '2018', value: 82 },
-    { name: '2019', value: 95 },
-    { name: '2020', value: 88 },
-    { name: '2021', value: 76 },
-  ],
-};
+const fdaCategories = [
+  { name: 'Supplements', value: 48501 },
+  { name: 'Cosmetics', value: 11733 },
+  { name: 'Nuts & seeds', value: 3383 },
+  { name: 'Vegetables', value: 3115 },
+  { name: 'Soft drinks', value: 2591 },
+  { name: 'Bakery', value: 2543 },
+];
+
+const fdaYears = [
+  { name: '2004', value: 3338 },
+  { name: '2005', value: 2500 },
+  { name: '2006', value: 2194 },
+  { name: '2007', value: 3152 },
+  { name: '2008', value: 4116 },
+  { name: '2009', value: 5768 },
+  { name: '2010', value: 4949 },
+  { name: '2011', value: 6711 },
+  { name: '2012', value: 7757 },
+  { name: '2013', value: 9308 },
+  { name: '2014', value: 8981 },
+  { name: '2015', value: 11689 },
+  { name: '2016', value: 15547 },
+];
+
+const imsMonths = [
+  { name: 'Jun 26', in: 547, out: 837 },
+  { name: 'Jul 26', in: 465, out: 1063 },
+  { name: 'Aug 26', in: 391, out: 1336 },
+  { name: 'Sep 26', in: 507, out: 930 },
+];
 
 const tabs = [
-  { id: 'inventory', label: 'Inventory view', story: 'Which categories hold the most stock, and how many items need reordering?' },
-  { id: 'workflow', label: 'Workflow / TAT view', story: 'Planned vs actual days per stage — where do orders slow down?' },
-  { id: 'content', label: 'Content trends view', story: 'How does the number of titles change across release years?' },
+  {
+    id: 'fda-cat',
+    label: 'FDA · by category',
+    source: 'FDA Adverse Events project',
+    question: 'Which product categories cause the most adverse-event reports?',
+    answer: 'Supplements alone account for 53% of all reports — about 4× the next category.',
+    kpis: [
+      { label: 'Reports analysed', value: '90,786', icon: FileWarning },
+      { label: 'Supplements', value: '48,501', icon: TrendingUp },
+      { label: 'Female reporters', value: '64.9%', icon: Users },
+    ],
+  },
+  {
+    id: 'fda-year',
+    label: 'FDA · year trend',
+    source: 'FDA Adverse Events project',
+    question: 'Are adverse-event reports increasing over time?',
+    answer: 'Yes — about 5× growth from 2004 to 2016, with the climb starting around 2009.',
+    kpis: [
+      { label: '2004 reports', value: '3,338', icon: CalendarRange },
+      { label: '2016 reports', value: '15,547', icon: CalendarRange },
+      { label: 'Growth', value: '4.7×', icon: TrendingUp },
+    ],
+  },
+  {
+    id: 'ims',
+    label: 'IMS · stock movements',
+    source: 'Inventory Management System (live)',
+    question: 'How much stock movement does the store log each month?',
+    answer: 'Issues (OUT) outnumber receipts (IN) roughly 2 : 1 — August was the busiest month for issues.',
+    kpis: [
+      { label: 'Entries Jun–Sep', value: '6,076', icon: Boxes },
+      { label: 'IN entries', value: '1,910', icon: PackagePlus },
+      { label: 'OUT entries', value: '4,166', icon: PackageMinus },
+    ],
+  },
 ] as const;
 
-const palette = ['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7', '#22d3ee', '#06b6d4'];
+const palette = ['#8b5cf6', '#6366f1', '#3b82f6', '#0ea5e9', '#22d3ee', '#14b8a6'];
+const fmt = (v: number) => v.toLocaleString('en-IN');
 const tooltipStyle = {
   contentStyle: { background: 'rgb(var(--surface))', border: '1px solid rgb(var(--line) / 0.15)', borderRadius: 12, fontSize: 12, color: 'rgb(var(--text))' },
   labelStyle: { color: 'rgb(var(--text))', fontWeight: 600 },
   cursor: { fill: 'rgb(var(--line) / 0.06)' },
+  formatter: (v: unknown) => fmt(Number(v)),
 };
 
 export default function AnalyticsShowcase() {
-  const [tab, setTab] = useState<(typeof tabs)[number]['id']>('inventory');
-  const current = tab === 'inventory' ? inventory : tab === 'workflow' ? workflow : content;
-  const story = tabs.find((t) => t.id === tab)!.story;
+  const [tabId, setTabId] = useState<(typeof tabs)[number]['id']>('fda-cat');
+  const tab = tabs.find((t) => t.id === tabId)!;
 
   return (
     <section id="analytics" className="section">
@@ -80,9 +99,9 @@ export default function AnalyticsShowcase() {
         <SectionHeading
           index="05"
           eyebrow="Analytics showcase"
-          title="How I think about"
-          accent="dashboards."
-          intro="Each view starts with a question, shows a few KPIs, then one chart that answers it. Switch views to explore."
+          title="Real questions,"
+          accent="real data."
+          intro="Every chart here comes from my own projects — a question, the numbers that answer it, and what they mean."
         />
 
         <Reveal>
@@ -95,26 +114,26 @@ export default function AnalyticsShowcase() {
                   <button
                     key={t.id}
                     role="tab"
-                    aria-selected={tab === t.id}
-                    onClick={() => setTab(t.id)}
-                    className={`shrink-0 rounded-full px-4 py-2 text-sm transition ${tab === t.id ? 'bg-[rgb(var(--text))] text-[rgb(var(--bg))]' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
+                    aria-selected={tabId === t.id}
+                    onClick={() => setTabId(t.id)}
+                    className={`shrink-0 rounded-full px-4 py-2 text-sm transition ${tabId === t.id ? 'bg-[rgb(var(--text))] text-[rgb(var(--bg))]' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
                   >
                     {t.label}
                   </button>
                 ))}
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-700 dark:text-amber-300">
-                <Info className="h-3.5 w-3.5" aria-hidden="true" /> Illustrative sample data — not real business results
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                <CircleCheck className="h-3.5 w-3.5" aria-hidden="true" /> Real data · {tab.source}
               </span>
             </div>
 
             <AnimatePresence mode="wait">
-              <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }} className="relative mt-5 grid gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-12">
+              <motion.div key={tabId} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }} className="relative mt-5 grid gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-12">
                 <div className="grid grid-cols-3 content-start gap-2 sm:gap-4 lg:col-span-4 lg:grid-cols-1">
-                  <p className="col-span-3 font-display text-xl italic leading-snug sm:text-2xl lg:col-span-1">“{story}”</p>
-                  {current.kpis.map((k) => (
+                  <p className="col-span-3 font-display text-xl italic leading-snug sm:text-2xl lg:col-span-1">“{tab.question}”</p>
+                  {tab.kpis.map((k) => (
                     <div key={k.label} className="surface flex flex-col items-start gap-2 rounded-2xl p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
-                      <span className="hidden h-10 w-10 place-items-center rounded-xl bg-gradient-to-br sm:grid from-blue-500/20 to-violet-500/20 text-violet-500 dark:text-violet-300">
+                      <span className="hidden h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 text-violet-500 dark:text-violet-300 sm:grid">
                         <k.icon className="h-5 w-5" aria-hidden="true" />
                       </span>
                       <div>
@@ -126,31 +145,22 @@ export default function AnalyticsShowcase() {
                 </div>
 
                 <div className="surface rounded-2xl p-2 sm:p-4 lg:col-span-8">
-                  <div className="h-[240px] w-full sm:h-[320px]" role="img" aria-label={`Sample chart: ${story}`}>
+                  <div className="h-[240px] w-full sm:h-[320px]" role="img" aria-label={`${tab.question} ${tab.answer}`}>
                     <ResponsiveContainer width="100%" height="100%">
-                      {tab === 'inventory' ? (
-                        <BarChart data={inventory.data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                      {tabId === 'fda-cat' ? (
+                        <BarChart data={fdaCategories} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 6" stroke="rgb(var(--line) / 0.12)" vertical={false} />
-                          <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                          <YAxis tickLine={false} axisLine={false} />
+                          <XAxis dataKey="name" tickLine={false} axisLine={false} interval={0} tick={{ fontSize: 10 }} />
+                          <YAxis tickLine={false} axisLine={false} width={44} tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
                           <Tooltip {...tooltipStyle} />
-                          <Bar dataKey="value" name="Units (sample)" radius={[8, 8, 0, 0]}>
-                            {inventory.data.map((_, i) => (
+                          <Bar dataKey="value" name="Reports" radius={[8, 8, 0, 0]}>
+                            {fdaCategories.map((_, i) => (
                               <Cell key={i} fill={palette[i % palette.length]} />
                             ))}
                           </Bar>
                         </BarChart>
-                      ) : tab === 'workflow' ? (
-                        <LineChart data={workflow.data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                          <CartesianGrid strokeDasharray="3 6" stroke="rgb(var(--line) / 0.12)" vertical={false} />
-                          <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                          <YAxis tickLine={false} axisLine={false} />
-                          <Tooltip {...tooltipStyle} cursor={{ stroke: 'rgb(var(--line) / 0.2)' }} />
-                          <Line type="monotone" dataKey="planned" name="Planned days" stroke="#22d3ee" strokeWidth={2.5} strokeDasharray="6 4" dot={false} />
-                          <Line type="monotone" dataKey="actual" name="Actual days" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4, fill: '#8b5cf6' }} />
-                        </LineChart>
-                      ) : (
-                        <AreaChart data={content.data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                      ) : tabId === 'fda-year' ? (
+                        <AreaChart data={fdaYears} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                           <defs>
                             <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
                               <stop offset="0" stopColor="#8b5cf6" stopOpacity={0.5} />
@@ -158,14 +168,28 @@ export default function AnalyticsShowcase() {
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 6" stroke="rgb(var(--line) / 0.12)" vertical={false} />
-                          <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                          <YAxis tickLine={false} axisLine={false} />
+                          <XAxis dataKey="name" tickLine={false} axisLine={false} tick={{ fontSize: 10 }} />
+                          <YAxis tickLine={false} axisLine={false} width={44} tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
                           <Tooltip {...tooltipStyle} cursor={{ stroke: 'rgb(var(--line) / 0.2)' }} />
-                          <Area type="monotone" dataKey="value" name="Titles (sample)" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#areaFill)" />
+                          <Area type="monotone" dataKey="value" name="Reports" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#areaFill)" />
                         </AreaChart>
+                      ) : (
+                        <BarChart data={imsMonths} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                          <CartesianGrid strokeDasharray="3 6" stroke="rgb(var(--line) / 0.12)" vertical={false} />
+                          <XAxis dataKey="name" tickLine={false} axisLine={false} />
+                          <YAxis tickLine={false} axisLine={false} width={44} />
+                          <Tooltip {...tooltipStyle} />
+                          <Legend wrapperStyle={{ fontSize: 12 }} />
+                          <Bar dataKey="in" name="IN (receipts)" fill="#22d3ee" radius={[6, 6, 0, 0]} />
+                          <Bar dataKey="out" name="OUT (issues)" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+                        </BarChart>
                       )}
                     </ResponsiveContainer>
                   </div>
+                  <p className="mt-3 border-t hairline px-2 pt-3 text-sm">
+                    <span className="font-semibold">Insight: </span>
+                    <span className="text-muted">{tab.answer}</span>
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>

@@ -34,12 +34,12 @@ export default function Hero() {
             <span className="font-mono tracking-[0.18em]">DATA ANALYST · SQL · PYTHON · POWER BI</span>
           </motion.div>
 
-          <h1 className="text-[2.35rem] font-extrabold leading-[1.04] sm:text-6xl xl:text-7xl" aria-label="Turning Raw Data Into Meaningful Business Insights.">
-            <SplitWords text="Turning" delay={0.35} />{' '}
-            <SplitWords text="Raw Data" delay={0.45} wordClassName="font-display font-normal italic grad-text pr-[0.06em]" />{' '}
-            <SplitWords text="Into Meaningful" delay={0.6} />{' '}
+          <h1 className="text-[2.35rem] font-extrabold leading-[1.04] sm:text-6xl xl:text-7xl" aria-label="From the QC lab to live business data.">
+            <SplitWords text="From the" delay={0.35} />{' '}
+            <SplitWords text="QC lab" delay={0.45} wordClassName="font-display font-normal italic grad-text pr-[0.06em]" />{' '}
+            <SplitWords text="to live" delay={0.6} />{' '}
             <span className="relative sm:whitespace-nowrap">
-              <SplitWords text="Business Insights." delay={0.75} />
+              <SplitWords text="business data." delay={0.75} />
               <svg className="absolute -bottom-2 left-0 h-3 w-full" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true">
                 <motion.path
                   d="M2 9 C80 2 160 2 298 7"
@@ -62,7 +62,7 @@ export default function Hero() {
           </h1>
 
           <motion.p {...item(2)} className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-7 sm:text-lg">
-            I clean, analyse and visualise data with SQL, Python and Power BI — finding what the numbers really say, and building the reports and automation that keep them accurate.
+            Data Analyst at a gearbox manufacturer — I run a 1,800+ SKU inventory system and a 24-step order tracker, and investigate public datasets with SQL, Python and Power BI.
           </motion.p>
 
           <motion.ul {...item(3)} className="mt-5 flex flex-wrap gap-1.5 sm:mt-7 sm:gap-2" aria-label="Core skills">

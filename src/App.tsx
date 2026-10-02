@@ -2,6 +2,7 @@ import { AnimatePresence, MotionConfig, motion, useReducedMotion, useScroll, use
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import About from './components/About';
 import Background from './components/Background';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import SkillMarquee from './components/SkillMarquee';
@@ -88,6 +89,7 @@ export default function App() {
         <ProjectGallery onOpen={open} openId={openId} />
         <Skills />
         <Experience />
+        <Certifications />
         <Suspense fallback={<div className="section" id="analytics" aria-busy="true" />}>
           <AnalyticsShowcase />
         </Suspense>

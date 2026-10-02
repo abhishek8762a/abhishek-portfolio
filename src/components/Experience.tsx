@@ -40,10 +40,10 @@ export default function Experience() {
                   className={`surface rounded-2xl p-4 transition hover:border-violet-400/40 sm:p-5 ${left ? 'md:col-start-1 md:mr-6 md:text-right' : 'md:col-start-2 md:ml-6'}`}
                 >
                   <p className="font-mono text-[11px] uppercase tracking-widest text-muted">
-                    {m.label} · <span className={t.period.includes('[') ? 'text-amber-600 dark:text-amber-300' : ''}>{t.period}</span>
+                    {m.label} · <span>{t.period}</span>
                   </p>
                   <h3 className="mt-2 text-lg font-bold">{t.title}</h3>
-                  <p className={`text-sm ${t.org.includes('[') ? 'text-amber-600 dark:text-amber-300' : 'text-muted'}`}>{t.org}</p>
+                  {t.org && <p className="text-sm text-muted">{t.org}</p>}
                   <ul className="mt-3 grid gap-1.5 text-sm text-muted">
                     {t.points.map((p) => (
                       <li key={p}>{p}</li>

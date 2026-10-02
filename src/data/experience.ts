@@ -41,9 +41,9 @@ export const timeline: TimelineItem[] = [
   },
   {
     kind: 'work',
-    title: 'QC Executive — Quality Control',
-    org: 'Pharmaceutical industry · [Company name]',
-    period: '[Add dates]',
+    title: 'Quality Control Executive',
+    org: 'Mahima Life Science Pvt. Ltd. · Pharmaceuticals',
+    period: 'Dec 2024 — 6 months',
     points: [
       'Quality control lab work (HPLC, GMP) in a regulated pharmaceutical environment.',
       'Built a habit of accuracy, documentation and data-driven checks.',
@@ -51,19 +51,8 @@ export const timeline: TimelineItem[] = [
   },
   {
     kind: 'education',
-    title: 'Certifications (Coursera)',
-    org: 'Microsoft · SkillUp Online · LearnQuest',
-    period: 'Jun — Aug 2026',
-    points: [
-      'SQL Foundations — Microsoft (Grade 100%)',
-      'Healthcare Data Visualization and Decision Support — SkillUp Online (Grade 97.14%)',
-      'Fundamentals of Data Analysis — LearnQuest',
-    ],
-  },
-  {
-    kind: 'education',
     title: 'M.Sc. Chemistry',
-    org: '[University name]',
+    org: '',
     period: 'Ongoing',
     points: ['Currently pursuing.'],
   },
