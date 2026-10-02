@@ -6,7 +6,7 @@ import { GithubIcon, LinkedinIcon } from './BrandIcons';
 import { CvButton } from './Navbar';
 import { Magnetic, SplitWords } from './motion';
 
-const skills = ['SQL', 'Python', 'Power BI', 'Excel', 'Google Sheets', 'Apps Script'];
+const skills = ['SQL', 'Python', 'Power BI', 'Excel', 'PostgreSQL', 'Pandas'];
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -31,7 +31,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75 motion-safe:animate-ping" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
             </span>
-            <span className="font-mono tracking-[0.18em]">DATA ANALYST | MIS ANALYST</span>
+            <span className="font-mono tracking-[0.18em]">DATA ANALYST · SQL · PYTHON · POWER BI</span>
           </motion.div>
 
           <h1 className="text-[2.35rem] font-extrabold leading-[1.04] sm:text-6xl xl:text-7xl" aria-label="Turning Raw Data Into Meaningful Business Insights.">
@@ -62,7 +62,7 @@ export default function Hero() {
           </h1>
 
           <motion.p {...item(2)} className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-7 sm:text-lg">
-            I build analytical dashboards, automate operational workflows, and transform business data into actionable insights using SQL, Python, Power BI, Excel, Google Sheets, and Apps Script.
+            I clean, analyse and visualise data with SQL, Python and Power BI — finding what the numbers really say, and building the reports and automation that keep them accurate.
           </motion.p>
 
           <motion.ul {...item(3)} className="mt-5 flex flex-wrap gap-1.5 sm:mt-7 sm:gap-2" aria-label="Core skills">

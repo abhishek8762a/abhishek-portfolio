@@ -63,7 +63,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section">
       <div className="container-x">
-        <SectionHeading index="06" eyebrow="Contact" title="Let's build something" accent="data-driven." intro="Open to Data Analyst and MIS Analyst opportunities. The fastest way to reach me is email or LinkedIn." />
+        <SectionHeading index="06" eyebrow="Contact" title="Let's build something" accent="data-driven." intro="Open to Data Analyst roles. The fastest way to reach me is email or LinkedIn." />
 
         <div className="grid gap-6 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">

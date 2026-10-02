@@ -40,19 +40,8 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    id: 'automation',
-    title: 'Automation',
-    blurb: 'Removing repetitive manual work.',
-    accent: 'cyan',
-    skills: [
-      { name: 'Google Sheets', icon: Sheet, note: 'Operational databases & trackers' },
-      { name: 'Google Apps Script', icon: CodeXml, note: 'Forms, web apps, workflow logic' },
-      { name: 'Workflow Automation', icon: Workflow, note: 'Multi-step process tracking' },
-    ],
-  },
-  {
     id: 'ops',
-    title: 'Data Operations',
+    title: 'Data Quality',
     blurb: 'Keeping data correct and decisions timely.',
     accent: 'emerald',
     skills: [
@@ -61,6 +50,17 @@ export const skillGroups: SkillGroup[] = [
       { name: 'KPI Reporting', icon: Gauge, note: 'Metrics that track performance' },
       { name: 'Inventory Analytics', icon: Boxes, note: 'Stock, locations, reorder levels' },
       { name: 'Process Tracking', icon: Route, note: 'Stage-wise status & TAT' },
+    ],
+  },
+  {
+    id: 'automation',
+    title: 'Automation',
+    blurb: 'Removing repetitive manual work.',
+    accent: 'cyan',
+    skills: [
+      { name: 'Google Sheets', icon: Sheet, note: 'Operational databases & trackers' },
+      { name: 'Google Apps Script', icon: CodeXml, note: 'Forms, web apps, workflow logic' },
+      { name: 'Workflow Automation', icon: Workflow, note: 'Multi-step process tracking' },
     ],
   },
 ];

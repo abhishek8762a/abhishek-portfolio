@@ -15,8 +15,8 @@ const cards = [
   },
   {
     icon: Workflow,
-    title: 'Career transition',
-    body: 'Moved into MIS, reporting and automation — building the systems that operations teams use every day.',
+    title: 'Lab to data',
+    body: 'From the lab bench to analytics — now working hands-on with SQL, Python and BI on real business data.',
   },
   {
     icon: Layers,
@@ -28,7 +28,7 @@ const cards = [
 const formula = [
   { label: 'Science', icon: FlaskConical },
   { label: 'Quality Control', icon: Microscope },
-  { label: 'Operations', icon: Briefcase },
+  { label: 'SQL & Python', icon: Briefcase },
   { label: 'Data', icon: Layers },
 ];
 
@@ -39,9 +39,9 @@ export default function About() {
         <SectionHeading
           index="01"
           eyebrow="About"
-          title="A scientist's eye for"
-          accent="operational data."
-          intro="My background combines scientific education, quality-control discipline, real operational workflows and data analytics."
+          title="I ask the data"
+          accent="better questions."
+          intro="Trained as a scientist, I treat every dataset like an experiment — question it, clean it, test it, then explain what it means."
         />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
@@ -75,13 +75,13 @@ export default function About() {
           <div className="lg:col-span-7 lg:pl-6">
             <Reveal>
               <p className="font-display text-[1.6rem] leading-snug sm:text-3xl">
-                I'm <span className="italic grad-text">{siteConfig.name}</span> — a data and MIS analyst who likes turning messy operational processes into clean, trackable systems.
+                I'm <span className="italic grad-text">{siteConfig.name}</span> — a data analyst who turns messy, real-world data into answers people can act on.
               </p>
               <p className="mt-6 leading-relaxed text-muted">
-                My path started in the laboratory. Working in pharmaceutical Quality Control taught me to respect data: every number needs a source, every process needs a record, and every deviation needs an explanation.
+                My path started in a pharmaceutical QC lab, where a wrong number isn't a typo — it's a failed batch. That taught me to check data before trusting it: every number needs a source, and every outlier needs an explanation.
               </p>
               <p className="mt-4 leading-relaxed text-muted">
-                Today I apply that same discipline to business operations — building Google Sheets and Apps Script systems for inventory and order workflows, writing SQL to answer questions, and creating dashboards that help teams see what's pending, what's late and what needs attention.
+                Today I write SQL to investigate, use Python to clean and automate, and build Power BI dashboards that tell a clear story — from 90,000-row public datasets to the live inventory and order data I work with every day.
               </p>
             </Reveal>
 
@@ -96,7 +96,7 @@ export default function About() {
                   </span>
                 ))}
                 <span className="text-muted" aria-hidden="true">=</span>
-                <span className="chip !border-violet-400/50 !py-1.5 font-semibold">Practical analytics</span>
+                <span className="chip !border-violet-400/50 !py-1.5 font-semibold">Data you can trust</span>
               </div>
             </Reveal>
 

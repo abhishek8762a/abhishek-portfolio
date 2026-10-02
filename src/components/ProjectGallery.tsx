@@ -5,7 +5,7 @@ import { gsap, ScrollTrigger } from '../lib/smoothScroll';
 import ProjectCard from './ProjectCard';
 import { SectionHeading } from './ui';
 
-const filters = ['All', 'Automation', 'AI & Python', 'SQL', 'Power BI'] as const;
+const filters = ['All', 'SQL', 'Power BI', 'AI & Python', 'Automation'] as const;
 type Filter = (typeof filters)[number];
 
 /** Layout mode for the current device. Horizontal pinned scroll only on large mouse screens. */
@@ -155,7 +155,7 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
               <h2 className="text-5xl font-bold leading-[1.02] xl:text-6xl">
                 Systems & analyses, <span className="font-display font-normal italic grad-text">built to be used.</span>
               </h2>
-              <p className="mt-5 text-muted">Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code.</p>
+              <p className="mt-5 text-muted">Real business data, SQL investigations, Power BI dashboards and an AI agent — each one linked to its code.</p>
               <div className="mt-7">
                 <FilterTabs filter={filter} setFilter={setFilter} />
               </div>
@@ -188,7 +188,7 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
             eyebrow="Featured work"
             title="Systems & analyses,"
             accent="built to be used."
-            intro="Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code."
+            intro="Real business data, SQL investigations, Power BI dashboards and an AI agent — each one linked to its code."
           />
           <div className="mb-5">
             <FilterTabs filter={filter} setFilter={setFilter} />
@@ -207,7 +207,7 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
           eyebrow="Featured work"
           title="Systems & analyses,"
           accent="built to be used."
-          intro="Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code."
+          intro="Real business data, SQL investigations, Power BI dashboards and an AI agent — each one linked to its code."
         />
         <div className="mb-10">
           <FilterTabs filter={filter} setFilter={setFilter} />
