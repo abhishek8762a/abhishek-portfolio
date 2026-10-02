@@ -363,7 +363,7 @@ export default function AnimatedAvatar() {
       <Float className={photoMode ? 'left-[-2%] top-[6%]' : 'left-[0%] top-[10%]'} depth={1.2} mx={mx} my={my} delay={0.6} reduce={reduce}>
         <p className="font-mono text-[9px] uppercase tracking-widest text-muted">SKUs tracked</p>
         <p className="text-2xl font-bold leading-tight"><CountUp to={1800} /><span className="grad-text">+</span></p>
-        <p className="text-[10px] text-muted"><CountUp to={4900} duration={2.2} />+ transactions</p>
+        <p className="text-[10px] text-muted"><CountUp to={6100} duration={2.2} />+ transactions</p>
       </Float>
 
       <Float className={photoMode ? 'right-[-2%] top-[2%]' : 'right-[0%] top-[4%]'} depth={1.6} mx={mx} my={my} delay={0.8} reduce={reduce}>

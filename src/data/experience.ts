@@ -14,8 +14,8 @@ export const timeline: TimelineItem[] = [
     org: 'Dharma Power Transmission Pvt. Ltd. (Omex Gears) · Sonipat, Haryana',
     period: 'Feb 2026 — Present',
     points: [
-      'Stock-movement analysis on 4,900+ transactions across 1,800+ SKUs; replaced manual registers with a single source of truth for 8 users.',
-      'Reorder thresholds from Average Daily Consumption (ADC × Lead Time × Safety Factor), driving 950+ purchase indents.',
+      'Built and run the Inventory Management System: 1,800+ SKUs, 6,100+ logged transactions, 8 users — replacing manual registers.',
+      'Reorder thresholds from Average Daily Consumption, lead time and safety factor, feeding system-generated purchase indents.',
       'TAT analysis across a 24-step, 5-phase order pipeline (90+ orders, 50+ clients) to find department-wise slippage.',
     ],
   },

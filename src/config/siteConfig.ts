@@ -53,21 +53,32 @@ export const siteConfig = {
  * Per-project links. Only paste PUBLIC / sanitized URLs here.
  * Never paste links to private company spreadsheets.
  */
-export const projectLinks: Record<
-  string,
-  { demoUrl: string; githubUrl: string; docsUrl: string; embedUrl: string }
-> = {
-  ims: { demoUrl: '', githubUrl: '', docsUrl: '', embedUrl: '' },
-  fms: { demoUrl: '', githubUrl: '', docsUrl: '', embedUrl: '' },
-  netflix: {
-    demoUrl: '',
-    githubUrl: 'https://github.com/abhishek8762a/netflix-sql-project',
-    docsUrl: '',
-    embedUrl: '',
-  },
-  sales: { demoUrl: '', githubUrl: '', docsUrl: '', embedUrl: '' },
-  healthcare: { demoUrl: '', githubUrl: '', docsUrl: '', embedUrl: '' },
+export interface ProjectLinks {
+  demoUrl: string;
+  githubUrl: string;
+  docsUrl: string;
+  embedUrl: string;
+  /** Additional labelled links, e.g. a second repository. */
+  extra?: { label: string; url: string }[];
+}
+
+const gh = (repo: string) => `https://github.com/abhishek8762a/${repo}`;
+const none: ProjectLinks = { demoUrl: '', githubUrl: '', docsUrl: '', embedUrl: '' };
+
+export const projectLinks: Record<string, ProjectLinks> = {
+  // Company systems — code stays private; add sanitized demo links only.
+  ims: { ...none },
+  fms: { ...none },
+  delegation: { ...none, githubUrl: gh('task-delegation-tracker') },
+  agent: { ...none, githubUrl: gh('ai-sql-analytics-agent') },
+  fda: { ...none, githubUrl: gh('fda-adverse-events-sql') },
+  netflix: { ...none, githubUrl: gh('netflix-sql-project'), extra: [{ label: 'Power BI repo', url: gh('netflix-data-analysis-PowerBI') }] },
+  railway: { ...none, githubUrl: gh('railway-sql-display-board') },
+  hormuz: { ...none, githubUrl: gh('Strait-Of-Hormuz') },
+  healthcare: { ...none, githubUrl: gh('Healthcare-Executive-Dashboard') },
 };
+
+export const linksFor = (id: string): ProjectLinks => projectLinks[id] ?? none;
 
 /** Resolves a /public path against the deploy base (needed for GitHub Pages). */
 export const asset = (path: string) =>

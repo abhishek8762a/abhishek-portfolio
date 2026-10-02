@@ -2,7 +2,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, typ
 import { ArrowDown, BookOpen, Cog, Database, ExternalLink, Lightbulb, Target, X } from 'lucide-react';
 import { createContext, useContext, useEffect, useRef, useState, type RefObject } from 'react';
 import { lockScroll } from '../lib/smoothScroll';
-import { projectLinks } from '../config/siteConfig';
+import { linksFor } from '../config/siteConfig';
+import FlowExplorer from './FlowExplorer';
 import type { Project } from '../data/projects';
 import { GithubIcon } from './BrandIcons';
 import ProjectArt from './ProjectArt';
@@ -12,12 +13,12 @@ import { LinkButton, SmartImage, accentMap } from './ui';
 /** The modal is its own scroll container — diagrams read their scroll progress from it. */
 const ScrollBox = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
-function Block({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
+function Block({ n, title, children, label }: { n: number; title: string; children: React.ReactNode; label?: string }) {
   return (
     <section className="border-t hairline py-8 first:border-t-0 first:pt-0" aria-labelledby={`cs-${n}`}>
       <div className="grid gap-4 md:grid-cols-12">
         <div className="md:col-span-3">
-          <p className="font-mono text-[11px] text-muted">{String(n).padStart(2, '0')}</p>
+          <p className="font-mono text-[11px] text-muted">{label ?? String(n).padStart(2, '0')}</p>
           <h3 id={`cs-${n}`} className="mt-1 text-lg font-bold">
             {title}
           </h3>
@@ -226,6 +227,14 @@ export default function ProjectDetails({ project, onClose }: { project: Project 
                 <Block n={6} title={`Workflow — ${project.workflowTitle}`}>
                   <WorkflowDiagram steps={project.workflow} project={project} />
                 </Block>
+                {project.flowExplorer && (
+                  <Block n={6} label="06b" title="Same engine — any business flow">
+                    <p className="mb-5 text-sm leading-relaxed text-muted">
+                      The FMS isn’t hard-wired to one process. Anything with a unique ID and a sequence of owned steps can be tracked — pick a flow to see how it maps.
+                    </p>
+                    <FlowExplorer />
+                  </Block>
+                )}
                 <Block n={7} title="Data Processing">
                   <Bullets items={project.dataProcessing} />
                 </Block>
@@ -233,6 +242,7 @@ export default function ProjectDetails({ project, onClose }: { project: Project 
                   <Bullets items={project.automationLogic} />
                 </Block>
                 <Block n={9} title="Dashboard Screenshots">
+                  {project.screenshots.length === 0 && <p className="text-sm text-muted">SQL-only project — the queries and results are in the GitHub repository.</p>}
                   <div className="grid gap-4 sm:grid-cols-2">
                     {project.screenshots.map((s) => (
                       <figure key={s.file}>
@@ -241,10 +251,10 @@ export default function ProjectDetails({ project, onClose }: { project: Project 
                       </figure>
                     ))}
                   </div>
-                  {projectLinks[project.id]?.embedUrl && (
+                  {linksFor(project.id).embedUrl && (
                     <iframe
                       title={`${project.title} live report`}
-                      src={projectLinks[project.id].embedUrl}
+                      src={linksFor(project.id).embedUrl}
                       loading="lazy"
                       className="mt-6 aspect-video w-full rounded-2xl border hairline"
                       allowFullScreen
@@ -260,12 +270,15 @@ export default function ProjectDetails({ project, onClose }: { project: Project 
                   <p className="leading-relaxed text-muted">{project.relevance}</p>
                 </Block>
                 <Block n={12} title="GitHub Repository">
-                  <LinkButton href={projectLinks[project.id]?.githubUrl ?? ''} label="View on GitHub" icon={<GithubIcon className="h-4 w-4" />} />
+                  <LinkButton href={linksFor(project.id).githubUrl ?? ''} label="View on GitHub" icon={<GithubIcon className="h-4 w-4" />} />
                 </Block>
-                <Block n={13} title="Live Demo & Docs">
+                <Block n={13} title="Live Demo & Links">
                   <div className="flex flex-wrap gap-2">
-                    <LinkButton href={projectLinks[project.id]?.demoUrl ?? ''} label="Live Demo" variant="primary" icon={<ExternalLink className="h-4 w-4" />} />
-                    <LinkButton href={projectLinks[project.id]?.docsUrl ?? ''} label="Documentation" icon={<BookOpen className="h-4 w-4" />} />
+                    {(linksFor(project.id).extra ?? []).map((l) => (
+                      <LinkButton key={l.url} href={l.url} label={l.label} icon={<GithubIcon className="h-4 w-4" />} />
+                    ))}
+                    <LinkButton href={linksFor(project.id).demoUrl ?? ''} label="Live Demo" variant="primary" icon={<ExternalLink className="h-4 w-4" />} />
+                    <LinkButton href={linksFor(project.id).docsUrl ?? ''} label="Documentation" icon={<BookOpen className="h-4 w-4" />} />
                   </div>
                 </Block>
               </div>
