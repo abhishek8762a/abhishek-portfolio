@@ -1,7 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 import {
   Braces, ChartColumn, Database, FileSpreadsheet, Filter, Gauge, Boxes, Route,
-  ShieldCheck, Sheet, Workflow, Calculator, CodeXml, LayoutDashboard, Table2, ChartLine,
+  ShieldCheck, Sheet, Workflow, Calculator, CodeXml, LayoutDashboard, Table2, ChartLine, Bot,
 } from 'lucide-react';
 
 export interface SkillGroup {
@@ -21,10 +21,11 @@ export const skillGroups: SkillGroup[] = [
     accent: 'blue',
     skills: [
       { name: 'SQL', icon: Database, note: 'Joins, aggregations, analysis queries' },
-      { name: 'MySQL', icon: Table2, note: 'Data import & relational analysis' },
+      { name: 'MySQL / PostgreSQL', icon: Table2, note: 'Schemas, roles, analysis queries' },
       { name: 'Python', icon: Braces, note: 'Scripting for data work' },
       { name: 'Pandas', icon: Calculator, note: 'Cleaning & transforming tables' },
       { name: 'NumPy', icon: ChartLine, note: 'Numerical operations' },
+      { name: 'LLM tool-calling agents', icon: Bot, note: 'NL → SQL with self-correction' },
     ],
   },
   {
@@ -33,7 +34,7 @@ export const skillGroups: SkillGroup[] = [
     blurb: 'Turning data into dashboards people use.',
     accent: 'violet',
     skills: [
-      { name: 'Power BI', icon: ChartColumn, note: 'Interactive dashboards & slicers' },
+      { name: 'Power BI + DAX', icon: ChartColumn, note: 'Data models, measures, dashboards' },
       { name: 'Microsoft Excel', icon: FileSpreadsheet, note: 'Formulas, pivots, reporting' },
       { name: 'Looker Studio', icon: LayoutDashboard, note: 'Reports on Google Sheets data' },
     ],
@@ -64,4 +65,4 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export const webSkills = ['HTML', 'CSS', 'JavaScript', 'Dashboard Development'];
+export const webSkills = ['HTML', 'CSS', 'JavaScript', 'Chart.js', 'Git & GitHub', 'Dashboard Development'];

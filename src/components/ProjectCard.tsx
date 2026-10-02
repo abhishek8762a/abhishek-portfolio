@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CircleCheck, FlaskConical, Info } from 'lucide-react';
-import { projectLinks } from '../config/siteConfig';
+import { linksFor } from '../config/siteConfig';
 import { statusLabel, type Project } from '../data/projects';
 import { GithubIcon } from './BrandIcons';
 import ProjectArt from './ProjectArt';
@@ -24,7 +24,7 @@ export function StatusBadge({ status }: { status: Project['status'] }) {
 }
 
 export default function ProjectCard({ project, index, onOpen, hidden = false, compact = false }: { project: Project; index: number; onOpen: (id: string) => void; hidden?: boolean; compact?: boolean }) {
-  const links = projectLinks[project.id];
+  const links = linksFor(project.id);
   const a = accentMap[project.accent];
 
   return (

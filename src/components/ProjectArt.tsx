@@ -48,6 +48,27 @@ export default function ProjectArt({ project, className = '' }: { project: Proje
             <path d="M36 160 L90 140 L140 150 L190 115 L240 125 L290 95" stroke={`url(#${gid})`} strokeWidth="3" fill="none" />
           </g>
         )}
+        {project.id === 'agent' && (
+          <g>
+            {[[60, 60], [160, 40], [260, 70], [110, 140], [220, 150]].map(([x, y], i) => (
+              <g key={i}>
+                <circle cx={x} cy={y} r={i === 1 ? 18 : 11} fill={`url(#${gid})`} opacity={i === 1 ? 1 : 0.55} />
+              </g>
+            ))}
+            <path d="M60 60 L160 40 L260 70 M160 40 L110 140 M160 40 L220 150 M110 140 L220 150" stroke={`url(#${gid})`} strokeWidth="2" fill="none" className="flow-line" />
+            <text x="160" y="46" textAnchor="middle" fontFamily="monospace" fontSize="12" fill="#fff">AI</text>
+            <rect x="30" y="170" width="260" height="16" rx="4" fill={`url(#${gid})`} opacity="0.25" />
+            <text x="40" y="182" fontFamily="monospace" fontSize="10" fill={a.from}>SELECT … WHERE amount ~ '^[0-9]+'</text>
+          </g>
+        )}
+        {project.id === 'fda' && (
+          <g>
+            {[48, 12, 9, 7, 5, 4].map((v, i) => (
+              <rect key={i} x="40" y={34 + i * 26} width={v * 5} height="18" rx="4" fill={`url(#${gid})`} opacity={1 - i * 0.12} />
+            ))}
+            <path d="M190 160 L220 140 L250 120 L280 60" stroke={`url(#${gid})`} strokeWidth="3" fill="none" />
+          </g>
+        )}
         {project.id === 'healthcare' && (
           <g>
             <path d="M20 120 H90 L105 80 L125 160 L145 60 L165 140 L180 120 H300" stroke={`url(#${gid})`} strokeWidth="3" fill="none" strokeLinejoin="round" />

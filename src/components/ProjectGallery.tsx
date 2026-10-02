@@ -5,7 +5,7 @@ import { gsap, ScrollTrigger } from '../lib/smoothScroll';
 import ProjectCard from './ProjectCard';
 import { SectionHeading } from './ui';
 
-const filters = ['All', 'Automation', 'SQL & BI', 'Analytics'] as const;
+const filters = ['All', 'Automation', 'AI & Python', 'SQL', 'Power BI'] as const;
 type Filter = (typeof filters)[number];
 
 /** Layout mode for the current device. Horizontal pinned scroll only on large mouse screens. */
@@ -33,7 +33,7 @@ function FilterTabs({ filter, setFilter }: { filter: Filter; setFilter: (f: Filt
           role="tab"
           aria-selected={filter === f}
           onClick={() => setFilter(f)}
-          className={`relative rounded-full px-4 py-2 text-sm transition ${filter === f ? 'text-white' : 'text-muted hover:text-[rgb(var(--text))]'}`}
+          className={`relative isolate rounded-full px-4 py-2 text-sm transition ${filter === f ? 'text-white' : 'text-muted hover:text-[rgb(var(--text))]'}`}
         >
           {filter === f && (
             <motion.span layoutId="filter-pill" className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-500 to-violet-600" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
@@ -105,7 +105,7 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
               <h2 className="text-5xl font-bold leading-[1.02] xl:text-6xl">
                 Systems & analyses, <span className="font-display font-normal italic grad-text">built to be used.</span>
               </h2>
-              <p className="mt-5 text-muted">Two systems running in real operations, one completed SQL + BI project, and clearly-labelled work in progress.</p>
+              <p className="mt-5 text-muted">Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code.</p>
               <div className="mt-7">
                 <FilterTabs filter={filter} setFilter={setFilter} />
               </div>
@@ -137,7 +137,7 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
           eyebrow="Featured work"
           title="Systems & analyses,"
           accent="built to be used."
-          intro="Two systems running in real operations, one completed SQL + BI project, and clearly-labelled work in progress."
+          intro="Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code."
         />
         <div className="mb-10">
           <FilterTabs filter={filter} setFilter={setFilter} />

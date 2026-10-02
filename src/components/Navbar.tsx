@@ -76,7 +76,7 @@ export default function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'ligh
               <a
                 href={`#${l.id}`}
                 aria-current={active === l.id ? 'true' : undefined}
-                className={`relative rounded-full px-4 py-2 text-sm transition-colors ${active === l.id ? '' : 'text-muted hover:text-[rgb(var(--text))]'}`}
+                className={`relative isolate rounded-full px-4 py-2 text-sm transition-colors ${active === l.id ? '' : 'text-muted hover:text-[rgb(var(--text))]'}`}
               >
                 {active === l.id && (
                   <motion.span layoutId="nav-pill" className="absolute inset-0 -z-10 rounded-full bg-[rgb(var(--line)/0.1)]" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
