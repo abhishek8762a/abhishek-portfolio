@@ -223,7 +223,7 @@ export const projects: Project[] = [
       { file: 'images/projects/fms-looker.png', caption: 'Looker Studio report' },
     ],
     overview:
-      'An FMS turns a business process into a row-per-item tracker. Each step gets four columns — Planned, Actual, Status and Time Delay — and the planned time is calculated from the previous step using working hours and holidays. Built on a reusable Apps Script FMS engine (BMP Formulas wizards), configured and extended for Omex’s order-to-dispatch flow.',
+      'An FMS turns a business process into a row-per-item tracker. Each step gets four columns — Planned, Actual, Status and Time Delay — and the planned time is calculated from the previous step using working hours and holidays. Built with Google Apps Script and configured for Omex’s order-to-dispatch flow.',
     problem:
       'An order rarely moves as one unit. Production decides how much to make this month, the client decides how much to take now, only part gets ready, and only part is dispatched. Tracking the whole order as “pending” hid which part was stuck and where.',
     objective:
