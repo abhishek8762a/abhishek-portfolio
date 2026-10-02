@@ -4,7 +4,7 @@ import { siteConfig } from '../config/siteConfig';
 export default function Footer() {
   return (
     <footer className="border-t hairline">
-      <div className="container-x py-12">
+      <div className="container-x py-10 sm:py-12">
         <p className="font-display text-[clamp(2.5rem,9vw,7.5rem)] italic leading-none opacity-90">
           <span className="grad-text">Data</span> → decisions.
         </p>

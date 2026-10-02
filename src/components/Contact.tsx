@@ -74,7 +74,7 @@ export default function Contact() {
                     key={c.label}
                     href={c.href}
                     {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="surface group flex items-center gap-4 rounded-2xl p-5 transition hover:-translate-y-1 hover:border-violet-400/40 hover:shadow-glow"
+                    className="surface group flex items-center gap-4 rounded-2xl p-4 transition sm:p-5 hover:-translate-y-1 hover:border-violet-400/40 hover:shadow-glow"
                   >
                     <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 text-white">{c.icon}</span>
                     <span className="min-w-0 flex-1">
@@ -102,7 +102,7 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={0.1} className="lg:col-span-7">
-            <form onSubmit={onSubmit} className="glass relative overflow-hidden rounded-3xl p-6 shadow-card sm:p-8" noValidate={false}>
+            <form onSubmit={onSubmit} className="glass relative overflow-hidden rounded-3xl p-5 shadow-card sm:p-8" noValidate={false}>
               <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-violet-500/15 blur-3xl" aria-hidden="true" />
               <div className="relative grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-1.5 text-sm">

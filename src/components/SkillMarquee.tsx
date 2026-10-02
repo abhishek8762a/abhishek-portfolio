@@ -27,15 +27,15 @@ function Row({ items, baseVelocity, outline = false }: { items: string[]; baseVe
   const list = [...items, ...items, ...items, ...items];
   return (
     <div className="flex overflow-hidden whitespace-nowrap">
-      <motion.div className="flex shrink-0 items-center gap-8 pr-8" style={{ x }}>
+      <motion.div className="flex shrink-0 items-center gap-5 pr-5 sm:gap-8 sm:pr-8" style={{ x }}>
         {list.map((t, i) => (
-          <span key={i} className="flex items-center gap-8">
+          <span key={i} className="flex items-center gap-5 sm:gap-8">
             <span
-              className={`text-4xl font-extrabold tracking-tight sm:text-6xl ${outline ? 'text-transparent [-webkit-text-stroke:1px_rgb(var(--text)/0.35)]' : ''}`}
+              className={`text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl ${outline ? 'text-transparent [-webkit-text-stroke:1px_rgb(var(--text)/0.35)]' : ''}`}
             >
               {t}
             </span>
-            <span className="h-3 w-3 rotate-45 rounded-sm bg-gradient-to-br from-blue-500 to-violet-500" />
+            <span className="h-2 w-2 rotate-45 rounded-sm bg-gradient-to-br from-blue-500 to-violet-500 sm:h-3 sm:w-3" />
           </span>
         ))}
       </motion.div>
@@ -45,9 +45,9 @@ function Row({ items, baseVelocity, outline = false }: { items: string[]; baseVe
 
 export default function SkillMarquee() {
   return (
-    <div className="relative -rotate-2 border-y hairline bg-[rgb(var(--surface)/0.5)] py-6 backdrop-blur-sm" aria-label="Tools and skills">
+    <div className="relative -rotate-2 border-y hairline bg-[rgb(var(--surface)/0.5)] py-4 backdrop-blur-sm sm:py-6" aria-label="Tools and skills">
       <Row items={rowA} baseVelocity={-2} />
-      <div className="mt-4">
+      <div className="mt-2 sm:mt-4">
         <Row items={rowB} baseVelocity={2} outline />
       </div>
     </div>

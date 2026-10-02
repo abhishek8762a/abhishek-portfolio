@@ -23,8 +23,8 @@ export default function Hero() {
   ].filter((s) => s.href);
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28 lg:pt-24">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-6">
+    <section id="home" className="relative flex items-center overflow-hidden pb-10 pt-24 sm:pb-16 sm:pt-28 lg:min-h-screen lg:pt-24">
+      <div className="container-x grid items-center gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-6">
         <div className="relative z-10 lg:col-span-6">
           <motion.div {...item(0)} className="chip mb-7">
             <span className="relative flex h-2 w-2">
@@ -34,7 +34,7 @@ export default function Hero() {
             <span className="font-mono tracking-[0.18em]">DATA ANALYST | MIS ANALYST</span>
           </motion.div>
 
-          <h1 className="text-[2.6rem] font-extrabold leading-[1.02] sm:text-6xl xl:text-7xl" aria-label="Turning Raw Data Into Meaningful Business Insights.">
+          <h1 className="text-[2.35rem] font-extrabold leading-[1.04] sm:text-6xl xl:text-7xl" aria-label="Turning Raw Data Into Meaningful Business Insights.">
             <SplitWords text="Turning" delay={0.35} />{' '}
             <SplitWords text="Raw Data" delay={0.45} wordClassName="font-display font-normal italic grad-text pr-[0.06em]" />{' '}
             <SplitWords text="Into Meaningful" delay={0.6} />{' '}
@@ -61,11 +61,11 @@ export default function Hero() {
             </span>
           </h1>
 
-          <motion.p {...item(2)} className="mt-7 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <motion.p {...item(2)} className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-7 sm:text-lg">
             I build analytical dashboards, automate operational workflows, and transform business data into actionable insights using SQL, Python, Power BI, Excel, Google Sheets, and Apps Script.
           </motion.p>
 
-          <motion.ul {...item(3)} className="mt-7 flex flex-wrap gap-2" aria-label="Core skills">
+          <motion.ul {...item(3)} className="mt-5 flex flex-wrap gap-1.5 sm:mt-7 sm:gap-2" aria-label="Core skills">
             {skills.map((s) => (
               <li key={s} className="chip transition hover:-translate-y-0.5 hover:border-violet-400/60">
                 {s}
@@ -73,9 +73,9 @@ export default function Hero() {
             ))}
           </motion.ul>
 
-          <motion.div {...item(4)} className="mt-9 flex flex-wrap items-center gap-3">
+          <motion.div {...item(4)} className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9">
             <Magnetic>
-              <a href="#projects" className="btn-primary group !px-6 !py-3">
+              <a href="#projects" className="btn-primary group !px-5 !py-3 sm:!px-6">
                 View My Projects
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </a>
@@ -85,7 +85,7 @@ export default function Hero() {
             </Magnetic>
           </motion.div>
 
-          <motion.div {...item(5)} className="mt-9 flex flex-wrap items-center gap-5 text-sm text-muted">
+          <motion.div {...item(5)} className="mt-7 flex flex-wrap items-center gap-5 text-sm text-muted sm:mt-9">
             <div className="flex items-center gap-2">
               {socials.map((s) => (
                 <Magnetic key={s.label} strength={0.5}>

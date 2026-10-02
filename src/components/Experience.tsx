@@ -28,7 +28,7 @@ export default function Experience() {
             const m = kindMeta[t.kind];
             const left = i % 2 === 0;
             return (
-              <li key={t.title} className="relative mb-10 pl-16 md:grid md:grid-cols-2 md:gap-12 md:pl-0">
+              <li key={t.title} className="relative mb-6 pl-14 sm:mb-10 sm:pl-16 md:grid md:grid-cols-2 md:gap-12 md:pl-0">
                 <span className={`absolute left-0 top-1 grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br ${m.color} text-white shadow-glow md:left-1/2 md:-translate-x-1/2`}>
                   <m.icon className="h-4 w-4" aria-hidden="true" />
                 </span>
@@ -37,7 +37,7 @@ export default function Experience() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-60px' }}
                   transition={{ duration: 0.6 }}
-                  className={`surface rounded-2xl p-5 transition hover:border-violet-400/40 ${left ? 'md:col-start-1 md:mr-6 md:text-right' : 'md:col-start-2 md:ml-6'}`}
+                  className={`surface rounded-2xl p-4 transition hover:border-violet-400/40 sm:p-5 ${left ? 'md:col-start-1 md:mr-6 md:text-right' : 'md:col-start-2 md:ml-6'}`}
                 >
                   <p className="font-mono text-[11px] uppercase tracking-widest text-muted">
                     {m.label} · <span className={t.period.includes('[') ? 'text-amber-600 dark:text-amber-300' : ''}>{t.period}</span>

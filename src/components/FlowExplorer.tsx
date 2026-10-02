@@ -19,23 +19,23 @@ export default function FlowExplorer() {
 
   return (
     <div>
-      <div className="mb-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-5 grid grid-cols-2 gap-2 lg:grid-cols-3">
         {engineRules.map((r) => (
           <div key={r.k} className="surface rounded-xl px-3 py-2.5">
             <p className="text-xs font-semibold">{r.k}</p>
-            <p className="mt-0.5 text-xs leading-snug text-muted">{r.v}</p>
+            <p className="mt-0.5 text-[11px] leading-snug text-muted sm:text-xs">{r.v}</p>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Example business flows">
+      <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0" role="tablist" aria-label="Example business flows">
         {flows.map((f) => (
           <button
             key={f.id}
             role="tab"
             aria-selected={id === f.id}
             onClick={() => setId(f.id)}
-            className={`relative isolate rounded-full px-3.5 py-1.5 text-xs font-medium transition ${id === f.id ? 'text-white' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
+            className={`relative isolate shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition ${id === f.id ? 'text-white' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
           >
             {id === f.id && <motion.span layoutId="flow-pill" className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-violet-600 to-blue-500" />}
             {f.name}
@@ -92,7 +92,7 @@ export default function FlowExplorer() {
                       <Scissors className="h-3 w-3" aria-hidden="true" /> qty split
                     </span>
                   )}
-                  <span className="ml-auto flex flex-wrap items-center gap-2 text-[11px] text-muted">
+                  <span className="flex w-full flex-wrap items-center gap-2 text-[11px] text-muted sm:ml-auto sm:w-auto">
                     <span>{s.who}</span>
                     <span className={`rounded-md px-1.5 py-0.5 font-medium ${timingStyle[s.timing]}`}>{s.when}</span>
                   </span>

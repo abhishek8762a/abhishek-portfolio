@@ -26,14 +26,14 @@ function useLayoutMode() {
 
 function FilterTabs({ filter, setFilter }: { filter: Filter; setFilter: (f: Filter) => void }) {
   return (
-    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter projects">
+    <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0" role="tablist" aria-label="Filter projects">
       {filters.map((f) => (
         <button
           key={f}
           role="tab"
           aria-selected={filter === f}
           onClick={() => setFilter(f)}
-          className={`relative isolate rounded-full px-4 py-2 text-sm transition ${filter === f ? 'text-white' : 'text-muted hover:text-[rgb(var(--text))]'}`}
+          className={`relative isolate shrink-0 rounded-full px-4 py-2 text-sm transition ${filter === f ? 'text-white' : 'text-muted hover:text-[rgb(var(--text))]'}`}
         >
           {filter === f && (
             <motion.span layoutId="filter-pill" className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-500 to-violet-600" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
@@ -41,6 +41,56 @@ function FilterTabs({ filter, setFilter }: { filter: Filter; setFilter: (f: Filt
           {f}
         </button>
       ))}
+    </div>
+  );
+}
+
+/** Phones: swipeable, snapping row of compact cards with a position indicator. */
+function MobileCarousel({ list, onOpen, openId }: { list: typeof projects; onOpen: (id: string) => void; openId: string | null }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const onScroll = () => {
+    const el = ref.current;
+    if (!el) return;
+    const card = el.firstElementChild as HTMLElement | null;
+    const step = card ? card.offsetWidth + 14 : el.clientWidth;
+    setActive(Math.min(list.length - 1, Math.round(el.scrollLeft / step)));
+  };
+  const go = (i: number) => {
+    const el = ref.current;
+    const card = el?.children[i] as HTMLElement | undefined;
+    if (el && card) el.scrollTo({ left: card.offsetLeft - 20, behavior: 'smooth' });
+  };
+  return (
+    <div>
+      <div
+        ref={ref}
+        onScroll={onScroll}
+        className="no-scrollbar flex snap-x snap-mandatory gap-3.5 overflow-x-auto scroll-px-5 px-5 pb-2"
+        aria-label="Projects — swipe to see more"
+      >
+        {list.map((p) => (
+          <div key={p.id} className="w-[84%] shrink-0 snap-start">
+            <ProjectCard project={p} index={projects.indexOf(p)} onOpen={onOpen} hidden={openId === p.id} compact />
+          </div>
+        ))}
+      </div>
+      <div className="container-x mt-4 flex items-center justify-between">
+        <div className="flex gap-1.5" aria-hidden="true">
+          {list.map((p, i) => (
+            <button
+              key={p.id}
+              type="button"
+              tabIndex={-1}
+              onClick={() => go(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? 'w-6 bg-gradient-to-r from-blue-500 to-violet-500' : 'w-1.5 bg-[rgb(var(--line)/0.25)]'}`}
+            />
+          ))}
+        </div>
+        <span className="font-mono text-xs text-muted">
+          {String(active + 1).padStart(2, '0')} / {String(list.length).padStart(2, '0')} · swipe →
+        </span>
+      </div>
     </div>
   );
 }
@@ -125,6 +175,26 @@ export default function ProjectGallery({ onOpen, openId }: { onOpen: (id: string
             </div>
           </div>
         </div>
+      </section>
+    );
+  }
+
+  if (cols === 1) {
+    return (
+      <section id="projects" className="section">
+        <div className="container-x">
+          <SectionHeading
+            index="02"
+            eyebrow="Featured work"
+            title="Systems & analyses,"
+            accent="built to be used."
+            intro="Systems running in real operations, an AI agent, and SQL & Power BI analyses — every one linked to its code."
+          />
+          <div className="mb-5">
+            <FilterTabs filter={filter} setFilter={setFilter} />
+          </div>
+        </div>
+        <MobileCarousel key={filter} list={list} onOpen={onOpen} openId={openId} />
       </section>
     );
   }

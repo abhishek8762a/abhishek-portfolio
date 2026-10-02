@@ -64,10 +64,10 @@ export default function ProjectCard({ project, index, onOpen, hidden = false, co
         </motion.div>
       </button>
 
-      <div className="p-6 pt-2">
+      <div className={compact ? 'p-5 pt-2' : 'p-6 pt-2'}>
         <StatusBadge status={project.status} />
-        <h3 className="mt-3 text-xl font-bold leading-tight">{project.title}</h3>
-        <p className="mt-1 font-display text-lg italic text-muted">{project.tagline}</p>
+        <h3 className={`mt-3 font-bold leading-tight ${compact ? 'text-lg' : 'text-xl'}`}>{project.title}</h3>
+        <p className={`mt-1 font-display italic text-muted ${compact ? 'text-base leading-snug' : 'text-lg'}`}>{project.tagline}</p>
         <p className={`mt-3 text-sm leading-relaxed text-muted ${compact ? 'line-clamp-3' : ''}`}>{project.description}</p>
 
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
