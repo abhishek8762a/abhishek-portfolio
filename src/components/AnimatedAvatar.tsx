@@ -268,7 +268,7 @@ export default function AnimatedAvatar() {
   };
 
   return (
-    <div ref={ref} onPointerMove={onMove} onPointerLeave={onLeave} className="relative mx-auto aspect-[1/1.05] w-full max-w-[560px] select-none">
+    <div ref={ref} onPointerMove={onMove} onPointerLeave={onLeave} className={`relative mx-auto w-full max-w-[560px] select-none ${photoMode ? 'aspect-[1/0.92] sm:aspect-[1/1.05]' : 'aspect-[1/1.05]'}`}>
       {/* ambient glow */}
       <div className="absolute inset-[8%] rounded-full bg-gradient-to-tr from-blue-600/40 via-violet-600/35 to-cyan-400/30 blur-3xl motion-safe:animate-drift" aria-hidden="true" />
       {/* orbit rings */}
@@ -307,7 +307,7 @@ export default function AnimatedAvatar() {
 
       {/* avatar */}
       {photoMode ? (
-        <motion.div className="absolute inset-x-[4%] top-[16%] z-10" style={{ x: avatarX, y: avatarY }}>
+        <motion.div className="absolute inset-x-[4%] top-[14%] z-10 sm:top-[16%]" style={{ x: avatarX, y: avatarY }}>
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.96 }}
             animate={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, scale: 1, y: [0, -10, 0] }}
@@ -360,13 +360,13 @@ export default function AnimatedAvatar() {
       )}
 
       {/* floating widgets */}
-      <Float className={photoMode ? 'left-[-2%] top-[6%]' : 'left-[0%] top-[10%]'} depth={1.2} mx={mx} my={my} delay={0.6} reduce={reduce}>
+      <Float className={photoMode ? 'left-[-1%] top-[4%] sm:left-[-2%] sm:top-[6%]' : 'left-[0%] top-[10%]'} depth={1.2} mx={mx} my={my} delay={0.6} reduce={reduce}>
         <p className="font-mono text-[9px] uppercase tracking-widest text-muted">SKUs tracked</p>
         <p className="text-2xl font-bold leading-tight"><CountUp to={1800} /><span className="grad-text">+</span></p>
         <p className="text-[10px] text-muted"><CountUp to={6100} duration={2.2} />+ transactions</p>
       </Float>
 
-      <Float className={photoMode ? 'right-[-2%] top-[2%]' : 'right-[0%] top-[4%]'} depth={1.6} mx={mx} my={my} delay={0.8} reduce={reduce}>
+      <Float className={photoMode ? 'right-[-2%] top-[2%] hidden sm:block' : 'right-[0%] top-[4%]'} depth={1.6} mx={mx} my={my} delay={0.8} reduce={reduce}>
         <p className="mb-1 flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest text-muted">
           <Database className="h-3 w-3 text-violet-400" aria-hidden="true" /> query.sql
         </p>

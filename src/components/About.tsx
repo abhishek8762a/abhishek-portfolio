@@ -44,7 +44,7 @@ export default function About() {
           intro="My background combines scientific education, quality-control discipline, real operational workflows and data analytics."
         />
 
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           {/* Photo collage */}
           <Reveal className="relative lg:col-span-5">
             <div className="relative mx-auto max-w-md">
@@ -65,7 +65,7 @@ export default function About() {
                   placeholderLabel="Optional"
                 />
               </div>
-              <span className="absolute -left-3 top-8 -rotate-6 font-hand text-2xl text-violet-500 dark:text-violet-300" aria-hidden="true">
+              <span className="absolute -top-8 left-2 -rotate-3 font-hand text-2xl text-violet-500 dark:text-violet-300 sm:-left-3 sm:top-8 sm:-rotate-6" aria-hidden="true">
                 hi, I'm Abhishek!
               </span>
             </div>
@@ -74,7 +74,7 @@ export default function About() {
           {/* Story */}
           <div className="lg:col-span-7 lg:pl-6">
             <Reveal>
-              <p className="font-display text-2xl leading-snug sm:text-3xl">
+              <p className="font-display text-[1.6rem] leading-snug sm:text-3xl">
                 I'm <span className="italic grad-text">{siteConfig.name}</span> — a data and MIS analyst who likes turning messy operational processes into clean, trackable systems.
               </p>
               <p className="mt-6 leading-relaxed text-muted">
@@ -100,15 +100,15 @@ export default function About() {
               </div>
             </Reveal>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4">
               {cards.map((c, i) => (
                 <Reveal key={c.title} delay={0.05 * i}>
-                  <article className="surface group h-full rounded-2xl p-5 transition duration-300 hover:-translate-y-1 hover:border-violet-400/40 hover:shadow-glow">
-                    <span className="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/15 to-violet-500/15 text-violet-500 transition group-hover:scale-110 dark:text-violet-300">
+                  <article className="surface group h-full rounded-2xl p-4 transition sm:p-5 duration-300 hover:-translate-y-1 hover:border-violet-400/40 hover:shadow-glow">
+                    <span className="mb-3 grid h-9 w-9 place-items-center rounded-xl sm:mb-4 sm:h-10 sm:w-10 bg-gradient-to-br from-blue-500/15 to-violet-500/15 text-violet-500 transition group-hover:scale-110 dark:text-violet-300">
                       <c.icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <h3 className="font-semibold">{c.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.body}</p>
+                    <h3 className="text-sm font-semibold sm:text-base">{c.title}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted sm:text-sm">{c.body}</p>
                   </article>
                 </Reveal>
               ))}

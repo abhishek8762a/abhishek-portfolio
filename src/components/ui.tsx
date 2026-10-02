@@ -21,16 +21,16 @@ export function Reveal({ children, delay = 0, className = '' }: { children: Reac
 
 export function SectionHeading({ index, eyebrow, title, accent, intro }: { index: string; eyebrow: string; title: string; accent: string; intro?: string }) {
   return (
-    <Reveal className="mb-14 grid gap-6 md:grid-cols-12 md:items-end">
+    <Reveal className="mb-8 grid gap-4 sm:mb-14 sm:gap-6 md:grid-cols-12 md:items-end">
       <div className="md:col-span-7">
         <p className="eyebrow mb-4">
           <span className="grad-text font-semibold">{index}</span> &nbsp;/&nbsp; {eyebrow}
         </p>
-        <h2 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+        <h2 className="text-[2rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
           {title} <span className="font-display font-normal italic grad-text">{accent}</span>
         </h2>
       </div>
-      {intro && <p className="text-muted md:col-span-5 md:pb-2 md:text-lg">{intro}</p>}
+      {intro && <p className="text-sm text-muted sm:text-base md:col-span-5 md:pb-2 md:text-lg">{intro}</p>}
     </Reveal>
   );
 }

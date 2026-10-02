@@ -15,7 +15,7 @@ const ScrollBox = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
 function Block({ n, title, children, label }: { n: number; title: string; children: React.ReactNode; label?: string }) {
   return (
-    <section className="border-t hairline py-8 first:border-t-0 first:pt-0" aria-labelledby={`cs-${n}`}>
+    <section className="border-t hairline py-6 first:border-t-0 first:pt-0 sm:py-8" aria-labelledby={`cs-${n}`}>
       <div className="grid gap-4 md:grid-cols-12">
         <div className="md:col-span-3">
           <p className="font-mono text-[11px] text-muted">{label ?? String(n).padStart(2, '0')}</p>
@@ -186,10 +186,10 @@ export default function ProjectDetails({ project, onClose }: { project: Project 
               </button>
             </motion.div>
 
-            <div className="relative -mt-20 px-5 pb-10 sm:px-10">
+            <div className="relative -mt-16 px-5 pb-10 sm:-mt-20 sm:px-10">
               <StatusBadge status={project.status} />
               <p className="eyebrow mt-4">Case study · {project.category}</p>
-              <h2 id="cs-title" className="mt-2 text-3xl font-extrabold leading-tight sm:text-5xl">
+              <h2 id="cs-title" className="mt-2 text-[1.75rem] font-extrabold leading-tight sm:text-5xl">
                 {project.title}
               </h2>
               <p className="mt-2 font-display text-xl italic text-muted">{project.tagline}</p>

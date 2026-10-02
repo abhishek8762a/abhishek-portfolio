@@ -86,18 +86,18 @@ export default function AnalyticsShowcase() {
         />
 
         <Reveal>
-          <div className="glass relative overflow-hidden rounded-3xl p-5 shadow-card sm:p-8">
+          <div className="glass relative overflow-hidden rounded-3xl p-4 shadow-card sm:p-8">
             <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" aria-hidden="true" />
 
             <div className="relative flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-2" role="tablist" aria-label="Dashboard views">
+              <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0" role="tablist" aria-label="Dashboard views">
                 {tabs.map((t) => (
                   <button
                     key={t.id}
                     role="tab"
                     aria-selected={tab === t.id}
                     onClick={() => setTab(t.id)}
-                    className={`rounded-full px-4 py-2 text-sm transition ${tab === t.id ? 'bg-[rgb(var(--text))] text-[rgb(var(--bg))]' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
+                    className={`shrink-0 rounded-full px-4 py-2 text-sm transition ${tab === t.id ? 'bg-[rgb(var(--text))] text-[rgb(var(--bg))]' : 'border hairline text-muted hover:text-[rgb(var(--text))]'}`}
                   >
                     {t.label}
                   </button>
@@ -109,24 +109,24 @@ export default function AnalyticsShowcase() {
             </div>
 
             <AnimatePresence mode="wait">
-              <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }} className="relative mt-8 grid gap-6 lg:grid-cols-12">
-                <div className="grid content-start gap-4 lg:col-span-4">
-                  <p className="font-display text-2xl italic leading-snug">“{story}”</p>
+              <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }} className="relative mt-5 grid gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-12">
+                <div className="grid grid-cols-3 content-start gap-2 sm:gap-4 lg:col-span-4 lg:grid-cols-1">
+                  <p className="col-span-3 font-display text-xl italic leading-snug sm:text-2xl lg:col-span-1">“{story}”</p>
                   {current.kpis.map((k) => (
-                    <div key={k.label} className="surface flex items-center gap-4 rounded-2xl p-4">
-                      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 text-violet-500 dark:text-violet-300">
+                    <div key={k.label} className="surface flex flex-col items-start gap-2 rounded-2xl p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
+                      <span className="hidden h-10 w-10 place-items-center rounded-xl bg-gradient-to-br sm:grid from-blue-500/20 to-violet-500/20 text-violet-500 dark:text-violet-300">
                         <k.icon className="h-5 w-5" aria-hidden="true" />
                       </span>
                       <div>
-                        <p className="text-xs text-muted">{k.label}</p>
-                        <p className="text-2xl font-bold">{k.value}</p>
+                        <p className="text-[11px] leading-tight text-muted sm:text-xs">{k.label}</p>
+                        <p className="text-xl font-bold sm:text-2xl">{k.value}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="surface rounded-2xl p-4 lg:col-span-8">
-                  <div className="h-[320px] w-full" role="img" aria-label={`Sample chart: ${story}`}>
+                <div className="surface rounded-2xl p-2 sm:p-4 lg:col-span-8">
+                  <div className="h-[240px] w-full sm:h-[320px]" role="img" aria-label={`Sample chart: ${story}`}>
                     <ResponsiveContainer width="100%" height="100%">
                       {tab === 'inventory' ? (
                         <BarChart data={inventory.data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
