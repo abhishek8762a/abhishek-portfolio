@@ -12,7 +12,7 @@ export const timeline: TimelineItem[] = [
     kind: 'work',
     title: 'MIS Data Analyst',
     org: 'Dharma Power Transmission Pvt. Ltd. (Omex Gears) · Sonipat, Haryana',
-    period: 'Feb 2026 — Present',
+    period: 'Apr 2026 — Present',
     points: [
       'Built and run the Inventory Management System: 1,800+ SKUs, 6,100+ logged transactions, 8 users — replacing manual registers.',
       'Reorder thresholds from Average Daily Consumption, lead time and safety factor, feeding system-generated purchase indents.',
@@ -43,7 +43,7 @@ export const timeline: TimelineItem[] = [
     kind: 'work',
     title: 'Quality Control Executive',
     org: 'Mahima Life Science Pvt. Ltd. · Pharmaceuticals',
-    period: 'Dec 2024 — 6 months',
+    period: 'Dec 2025 — Mar 2026',
     points: [
       'Quality control lab work (HPLC, GMP) in a regulated pharmaceutical environment.',
       'Built a habit of accuracy, documentation and data-driven checks.',
