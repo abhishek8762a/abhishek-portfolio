@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: 246 247 251;
+  --bg-2: 236 239 248;
+  --surface: 255 255 255;
+  --text: 15 20 40;
+  --muted: 82 92 120;
+  --line: 15 20 40;
+  --line-a: 0.09;
+  --glass: 255 255 255;
+  --glass-a: 0.7;
+  --grid-a: 0.05;
+  color-scheme: light;
+}
+.dark {
+  --bg: 7 10 20;
+  --bg-2: 11 15 30;
+  --surface: 15 20 40;
+  --text: 232 236 248;
+  --muted: 148 160 192;
+  --line: 160 175 220;
+  --line-a: 0.12;
+  --glass: 18 24 48;
+  --glass-a: 0.55;
+  --grid-a: 0.05;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    @apply font-sans antialiased;
+    background: rgb(var(--bg));
+    color: rgb(var(--text));
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  ::selection {
+    background: rgba(139, 92, 246, 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .text-muted {
+    color: rgb(var(--muted));
+  }
+  .hairline {
+    border-color: rgb(var(--line) / var(--line-a));
+  }
+  .surface {
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--line) / var(--line-a));
+  }
+  .glass {
+    background: rgb(var(--glass) / var(--glass-a));
+    border: 1px solid rgb(var(--line) / var(--line-a));
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+  .grad-text {
+    background: linear-gradient(100deg, #3b82f6 0%, #8b5cf6 45%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.22em];
+    color: rgb(var(--muted));
+  }
+  .section {
+    @apply relative py-24 sm:py-32;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+    background: rgb(var(--line) / 0.06);
+    border: 1px solid rgb(var(--line) / var(--line-a));
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(110deg, #3b82f6, #7c3aed 60%, #6d28d9);
+    box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.65);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -10px rgba(124, 58, 237, 0.8);
+  }
+  .btn-ghost {
+    @apply btn;
+    border: 1px solid rgb(var(--line) / 0.2);
+    background: rgb(var(--surface) / 0.4);
+  }
+  .btn-ghost:hover {
+    border-color: rgba(139, 92, 246, 0.6);
+    transform: translateY(-2px);
+  }
+  .btn-disabled {
+    @apply btn cursor-not-allowed opacity-60;
+    border: 1px dashed rgb(var(--line) / 0.3);
+  }
+}
+
+/* Background grid + noise */
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(var(--line) / var(--grid-a)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / var(--grid-a)) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+}
+
+.flow-line {
+  stroke-dasharray: 6 8;
+  animation: flow 2.2s linear infinite;
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: rgb(var(--bg)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--line) / 0.2); border-radius: 10px; border: 2px solid rgb(var(--bg)); }
+
+/* Recharts text colors follow theme */
+.recharts-cartesian-axis-tick-value { fill: rgb(var(--muted)); font-size: 11px; }
+.recharts-text { fill: rgb(var(--muted)); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
