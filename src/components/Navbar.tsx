@@ -66,7 +66,7 @@ export default function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'ligh
           </span>
           <span className="hidden text-sm font-semibold sm:block">
             {siteConfig.name}
-            <span className="block font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-muted">Data · MIS</span>
+            <span className="block font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-muted">Data Analyst</span>
           </span>
         </a>
 

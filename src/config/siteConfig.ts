@@ -15,7 +15,7 @@
 export const siteConfig = {
   name: 'Abhishek Kumar',
   shortName: 'AK',
-  title: 'Data Analyst | MIS Analyst | Automation Enthusiast',
+  title: 'Data Analyst',
   location: 'India',
 
   // ---- Contact ------------------------------------------------
