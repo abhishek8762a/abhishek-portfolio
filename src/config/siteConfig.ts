@@ -80,6 +80,6 @@ export const projectLinks: Record<string, ProjectLinks> = {
 
 export const linksFor = (id: string): ProjectLinks => projectLinks[id] ?? none;
 
-/** Resolves a /public path against the deploy base (needed for GitHub Pages). */
+/** Resolves a /public path against the configured base URL. */
 export const asset = (path: string) =>
   `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;

@@ -1,126 +1,65 @@
 # Abhishek Kumar — Data Analyst Portfolio
 
-React + Vite + TypeScript + Tailwind CSS + Framer Motion + Lucide + Recharts.
-Static site, GitHub Pages pe free deploy hota hai. Koi backend / paid service nahi.
+**Live site → [abhishek-kumar-portfolios.vercel.app](https://abhishek-kumar-portfolios.vercel.app)**
+
+![Portfolio preview](public/og-image.jpg)
+
+Personal portfolio showcasing my work as a Data Analyst — from live inventory and order-tracking systems I run at a gearbox manufacturer, to SQL investigations, Power BI dashboards and an AI-powered SQL agent.
 
 ---
 
-## 1. Node.js install karo (ek baar)
+## Featured work
 
-- Windows/Mac: https://nodejs.org se **LTS (v20 ya v22)** download karke install karo.
-- Check:
-  ```bash
-  node -v
-  npm -v
-  ```
+| Project | What it shows | Stack |
+|---|---|---|
+| **Inventory Management System** | 1,800+ SKUs, 6,100+ logged transactions, reorder logic, reconciliation & audit checks — running in daily operations | Google Apps Script, Google Sheets |
+| **AI SQL Analytics Agent** | Natural-language → SQL agent that detects errors and dirty data and corrects its own queries | Python, PostgreSQL, LLM tool-calling |
+| **FDA Adverse Events Analysis** | 90,786-record public-health investigation in SQL | MySQL, Excel |
+| **Strait of Hormuz Oil Dashboard** | 40 years of oil prices vs geopolitical events, 211 countries | Power BI, DAX |
+| **Flow Management System** | 24-step order-to-dispatch tracking with batch-level turnaround-time analysis | Google Apps Script, Looker Studio |
+| **Netflix · Healthcare · Railway · Delegation** | SQL analysis, executive dashboards, data modelling, a full-stack Apps Script app | SQL, Power BI, Apps Script |
 
-## 2. Project chalao (local)
+Each project opens into a case study covering the business problem, architecture, workflow, data processing, insights and links to the code.
 
-> Project already bana hua hai — `npm create vite` ki zarurat nahi. Zip extract karke:
+## Highlights
 
-```bash
-cd abhishek-portfolio
-npm install          # dependencies install
-npm run dev          # http://localhost:5173 pe khulega
+- **Real data, clearly labelled** — analytics charts are built from my own project data; company systems are shown without confidential information.
+- **Interactive case studies** — deep-linkable (e.g. `/#project/fms`), with diagrams that animate as you scroll and an explorer showing how the same workflow engine maps to different business processes.
+- **Motion with restraint** — smooth scrolling, pinned horizontal project gallery and micro-interactions on desktop; a lighter, swipe-based layout on phones; all animation disabled for users who prefer reduced motion.
+- **Fast & accessible** — static build, lazy-loaded charts, semantic HTML, keyboard navigation, light/dark themes.
+
+## Tech stack
+
+**React 18** · **TypeScript** · **Vite** · **Tailwind CSS** · **Framer Motion** · **GSAP + Lenis** · **Recharts** · **Lucide** — deployed on **Vercel**.
+
+## Project structure
+
+```
+src/
+├── config/siteConfig.ts   # Contact details, CV path, per-project links
+├── data/                  # Content: projects, skills, experience, workflow examples
+├── components/            # One component per section (Hero, Projects, Skills, …)
+├── hooks/                 # Theme and active-section hooks
+├── lib/smoothScroll.ts    # Lenis + GSAP ScrollTrigger setup
+└── index.css              # Design tokens (light/dark) and base styles
+public/                    # CV, images, social preview
 ```
 
-## 3. Production build + test
+Content is kept separate from presentation: updating a project or adding a new one only requires editing `src/data/projects.ts` and `src/config/siteConfig.ts`.
+
+## Run locally
+
+Requires Node.js 18+.
 
 ```bash
-npm run build        # type-check + build → dist/ folder
-npm run preview      # build ko locally test karo (http://localhost:4173)
+npm install
+npm run dev       # development server
+npm run build     # type-check + production build
+npm run preview   # serve the production build
 ```
 
----
+## Contact
 
-## 4. Apni details update karo — sirf EK file: `src/config/siteConfig.ts`
-
-| Kya | Kahan |
-|---|---|
-| Email / LinkedIn / GitHub | `siteConfig.email`, `linkedin`, `github` (already filled) |
-| CV | `public/resume.pdf` daalo → `resume.available: true` |
-| Project links (demo / docs / GitHub / embed) | `projectLinks` — khaali `''` = "Coming soon" disabled button |
-| Contact form (optional) | Free Formspree endpoint → `formspreeEndpoint`. Khaali ho to form visitor ka email app kholta hai (mailto). Fake "sent" message kabhi nahi dikhta. |
-
-Baaki text yahan hai:
-- Projects / case studies → `src/data/projects.ts`
-- Skills → `src/data/skills.ts`
-- Timeline (dates, company names) → `src/data/experience.ts` — **`[ ]` wale placeholders amber colour mein dikhte hain, inhe bhar dena.**
-
-## 5. Images — exact filenames
-
-Sab `public/images/` ke andar. File daalo, rebuild karo — automatically dikh jayegi. Jab tak file nahi hai, site pe saaf placeholder dikhta hai (koi broken image / 404 nahi).
-
-| File | Kahan dikhega |
-|---|---|
-| `public/images/profile.jpg` | About section — main photo (portrait, ~1000×1250) |
-| `public/images/profile-2.jpg` | About — chhoti second photo (optional, square) |
-| `public/images/avatar.jpg` ✅ | Hero image (framed photo mode). Isko `''` karoge to built-in vector avatar dikhega. Na ho to built-in animated vector avatar (glasses, black hair, maroon polo) dikhta hai. |
-| `public/images/projects/ims-thumbnail.png` | IMS card cover |
-| `public/images/projects/ims-dashboard.png`, `ims-entry-form.png`, `ims-location-stock.png` | IMS case study screenshots |
-| `public/images/projects/fms-thumbnail.png` | FMS card cover |
-| `public/images/projects/fms-workflow.png`, `fms-pending.png`, `fms-looker.png` | FMS screenshots |
-| `public/images/projects/netflix-thumbnail.png`, `netflix-dashboard.png`, `netflix-queries.png` | Netflix project |
-| `public/images/projects/sales-*.png`, `healthcare-*.png` | Template projects (jab kaam ho jaye) |
-
-⚠️ IMS/FMS screenshots **sanitize** karke daalna — customer names, vendor names, rates, employee data blur/replace kar dena. Private Google Sheet links kabhi `projectLinks` mein mat daalna.
-
----
-
-## 6A. Vercel pe LIVE karo (recommended)
-
-1. Code GitHub repo mein push karo (neeche wale git commands).
-2. https://vercel.com → **Continue with GitHub**.
-3. **Add New → Project** → `abhishek-portfolio` → **Import** → **Deploy** (Vite auto-detect hota hai, koi setting nahi).
-4. Link milega: `https://abhishek-portfolio.vercel.app`. Har `git push` pe auto-update.
-
-## 6B. Ya GitHub Pages pe LIVE karo
-
-**a) Repo banao:** github.com → New repository → naam e.g. `abhishek-portfolio` → Public → *README add mat karna* → Create.
-
-**b) Code push karo** (project folder ke andar):
-```bash
-git init
-git add .
-git commit -m "Initial portfolio"
-git branch -M main
-git remote add origin https://github.com/abhishek8762a/abhishek-portfolio.git
-git push -u origin main
-```
-
-**c) Pages enable karo:** Repo → **Settings → Pages → Build and deployment → Source: "GitHub Actions"**.
-
-**d) Deploy:** Push hote hi `.github/workflows/deploy.yml` chalega (Actions tab mein dekho, ~1–2 min). Base path automatically repo name se set hota hai.
-
-**e) Verify:** Site yahan live hogi → `https://abhishek8762a.github.io/abhishek-portfolio/`
-Check karo: theme toggle, nav links, project case study (URL `#project/ims` jaisa), CV button, contact.
-
-> Tip: Repo ka naam `abhishek8762a.github.io` rakhoge to site `https://abhishek8762a.github.io/` pe khulegi (workflow ye bhi handle karta hai).
-
-**f) Baad mein update:**
-```bash
-git add .
-git commit -m "Update projects"
-git push
-```
-Har push pe site auto-redeploy hoti hai.
-
----
-
-## Animations (built-in)
-- Lenis smooth scroll (desktop) + GSAP ScrollTrigger
-- Hero: word-by-word heading reveal, photo mask reveal + light sweep, count-up numbers, magnetic buttons
-- Velocity-reactive skills marquee
-- Projects: pinned horizontal scroll (desktop), 3D tilt + glare cards, card → case-study shared transition
-- Case study: workflow steps light up and line draws as you scroll
-- Custom cursor ("View" on project cards)
-- Phones / reduced-motion: heavy effects auto-off, site stays fast
-
-## Features (built-in)
-- Sticky nav with active-section pill, mobile menu, dark/light toggle (saved), scroll progress bar
-- Hero: animated illustrated avatar, mouse parallax, floating KPI/SQL/chart widgets, handwritten annotations
-- Pinterest-style masonry project gallery with filters + 13-section case study modal (deep-linkable)
-- Architecture + workflow diagrams (IMS, FMS 15-stage flow)
-- Analytics showcase (Recharts, lazy-loaded) — **clearly labelled sample data**
-- Scroll-reveal animations, `prefers-reduced-motion` respected, skip-link, keyboard/Escape support
-- SEO meta tags, favicon, 404 page, `.nojekyll`
+- **Email:** [abhiyadav8762@gmail.com](mailto:abhiyadav8762@gmail.com)
+- **LinkedIn:** [linkedin.com/in/abhi8762](https://www.linkedin.com/in/abhi8762)
+- **GitHub:** [github.com/abhishek8762a](https://github.com/abhishek8762a)

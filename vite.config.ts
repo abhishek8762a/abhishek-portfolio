@@ -16,8 +16,7 @@ function listImages(dir = 'public/images'): string[] {
   }
 }
 
-// GitHub Pages: set BASE_PATH to "/<repo-name>/" (the deploy workflow does this automatically).
-// For a user site (username.github.io) or local dev, the base is "/".
+// Optional sub-path hosting: set BASE_PATH (defaults to the site root).
 export default defineConfig({
   base: process.env.BASE_PATH || '/',
   plugins: [react()],

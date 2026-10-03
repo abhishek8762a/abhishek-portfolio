@@ -1,5 +1,4 @@
-// Copies dist/index.html to dist/404.html so GitHub Pages serves the app for unknown paths,
-// and adds .nojekyll so files starting with "_" are served.
+// Copies dist/index.html to dist/404.html so static hosts serve the app's own 404 page.
 import { copyFileSync, writeFileSync, existsSync } from 'node:fs';
 if (existsSync('dist/index.html')) {
   copyFileSync('dist/index.html', 'dist/404.html');
