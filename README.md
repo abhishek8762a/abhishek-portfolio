@@ -61,5 +61,5 @@ npm run preview   # serve the production build
 ## Contact
 
 - **Email:** [abhiyadav8762@gmail.com](mailto:abhiyadav8762@gmail.com)
-- **LinkedIn:** [linkedin.com/in/abhi8762](https://www.linkedin.com/in/abhi8762)
+- **LinkedIn:** [linkedin.com/in/abhikumar8762](https://www.linkedin.com/in/abhikumar8762/)
 - **GitHub:** [github.com/abhishek8762a](https://github.com/abhishek8762a)
