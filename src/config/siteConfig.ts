@@ -20,7 +20,7 @@ export const siteConfig = {
 
   // ---- Contact ------------------------------------------------
   email: 'abhiyadav8762@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/abhi8762',
+  linkedin: 'https://www.linkedin.com/in/abhikumar8762/',
   github: 'https://github.com/abhishek8762a',
 
   // ---- CV -----------------------------------------------------
